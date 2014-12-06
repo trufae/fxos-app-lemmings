@@ -1,0 +1,130 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="no">
+<title>All lemmings&trade; accounted for!</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<script type="text/javascript" src="../js/standards.js"></script>
+<script type="text/javascript" src="../js/cookies.js"></script>
+<script type="text/javascript">
+
+var numlemmings = getURLParameter(window.location.search, 'numlemmings');
+var savelemmings = getURLParameter(window.location.search, 'savelemmings');
+var homelemmings = getURLParameter(window.location.search, 'homelemmings');
+var levelnum = parseInt(getURLParameter(window.location.search, 'level'), 10);
+var rating = getURLParameter(window.location.search, 'rating');
+var code = getURLParameter(window.location.search, 'code');
+var nextlevelcode = getURLParameter(window.location.search, 'nextlevelcode');
+var cheatmode = getURLParameter(window.location.search, 'cheatmode');
+
+var nextlevel = levelnum + 1;
+
+var n = Math.round(savelemmings/numlemmings * 100);
+var r = Math.round(homelemmings/numlemmings * 100);
+
+include('../levels/'+rating+'.js');
+
+// if success write new cookie
+if (r >= n && validate(code)) {
+
+  var cookie = getcookie(rating.toUpperCase());
+  var completed = getURLParameter(cookie, 'completed');
+  var nextlevel_c = parseInt(getURLParameter(cookie, 'nextlevel'), 10);
+  var nextlevelcode_c = getURLParameter(cookie, 'nextlevelcode');
+
+  if (completed != '') completed = completed.split(',');
+
+  var codes = new Array();
+  for (var i = 0; i < completed.length; i++) {
+    var codesplit = completed[i].split(':');
+    var level = parseInt(codesplit[0], 10);
+    codes[level] = [codesplit[1],codesplit[2]];
+  }
+  codes[levelnum] = [code, 1];
+
+  completed = '';
+  for (i = 0; i < codes.length; i++) {
+    if (typeof codes[i] != 'undefined') {
+      if (completed != '') completed += ',';
+      completed += i + ':' + codes[i][0] + ':' + codes[i][1];
+    }
+  }
+
+  cookie = '?completed='+completed;
+  if (nextlevelcode != '' && typeof codes[nextlevel] == 'undefined') {
+    cookie += '&nextlevel='+nextlevel+'&nextlevelcode='+nextlevelcode;
+  } else if (nextlevel_c > 0) {
+    cookie += '&nextlevel='+nextlevel_c+'&nextlevelcode='+nextlevelcode_c;
+  }
+
+  setcookie(rating.toUpperCase(), cookie);
+
+} else {
+
+  nextlevelcode = code;
+
+}
+function scaleStuff () {
+	function viewPort() {
+		var h = window.innerHeight 
+		|| document.documentElement.clientHeight 
+		|| document.getElementsByTagName('body')[0].clientHeight;
+		var w = window.innerWidth 
+		|| document.documentElement.clientWidth 
+		|| document.getElementsByTagName('body')[0].clientWidth;
+
+		return {width : w, height : h};
+	}
+
+	var size = viewPort();
+		var b = document.getElementById ("content");
+		b.style.top = "10px";
+		b.style.height = ""+(size.height - 60) + "px";
+}
+window.onresize = scaleStuff;
+document.addEventListener ('DOMContentLoaded', function (e) {
+	scaleStuff ();
+});
+
+</script>
+</head>
+<body onload="init_music()">
+<div id="content"><h1>All lemmings&trade; accounted for</h1>
+<div class="center">
+<script type="text/javascript">
+
+document.write('You needed '+n+'%<br />');
+document.write('You rescued '+r+'%<br />');
+
+if (nextlevel >= levels.length && r >= n) {
+  document.write('<h2>You made it!</h2>Sorry, that\'s all for this difficulty at the moment, check back later for more levels!</h2>');
+} else if (r == 100) {
+  document.write('<h2>Superb!</h2>You rescued every lemming&trade; on that level. Can you do it again... ?');
+} else if (r > n) {
+  document.write('<h2>Golly!</h2>You totally stormed that level! Let\'s see if you can storm the next...');
+} else if (r == n) {
+  document.write('<h2>Right on!</h2>You can\'t get much closer than that. Let\'s try the next...');
+} else if (r == 0) {
+  document.write('<h2>Rock Bottom!</h2>I hope for your sake that you nuked that level.');
+} else {
+  document.write('<h2>Mayhem!</h2>A little more practice on this level is definitely recommended.');
+}
+
+</script>
+</div>
+<h2 style="margin-top: 40px">
+
+<a href="menu.html" target="_self" onfocus="this.blur()">Menu</a>
+<script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Play Again<\/a>&nbsp;&nbsp;&nbsp;');
+if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next Level<\/a>&nbsp;&nbsp;&nbsp;');</script>
+</h2>
+
+<img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
+<img id="lemmingRight" src="../img/lemming_right.gif" alt="" />
+<div id="version"><script type="text/javascript">document.write(version+' '+formatdate(rts));</script></div>
+<div id="copyright"><a href="gpl.html" target="_self" onfocus="this.blur()">GNU copyright</a> &copy; 2004 by crisp - <a href="mailto:freesoftware&#x40;xs4all.nl" target="_blank" onfocus="this.blur()">freesoftware[at]xs4all.nl</a></div>
+</div>
+</body>
+</html>

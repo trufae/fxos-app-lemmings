@@ -1,0 +1,172 @@
+********************************************************************************
+                          DHTML Lemmings(tm) by crisp
+
+
+********************************************************************************
+
+Documentation
+-------------
+
+Because this game is made up of several components, and these components itself
+have little documentation and comments to keep the files as small as possible,
+I'll explain a little here about how the game works.
+
+
+Before the game starts
+----------------------
+
+As you open the index.html in your browser a frameset with 2 frames is loaded.
+One is a hidden frame that loads playmusic.html; this file checks for sound-
+support and plays the background music. Because it is a frame, the music will
+continue playing even if you navigate through the other pages.
+
+The second frame will first load preload.html that preloads all images used
+in the general pages, and the images that are always used in each level of the
+game. This makes for faster loading of the other pages and the game itself.
+
+The menu has 4 pictures for each game difficulty, and some general options that
+can be set or unset. The options are stored in a cookie, and will be in effect
+for each level you play. The pictures link to gameselect.html that dynamically
+creates an optionlist for each available level of that difficulty (at the moment
+10 levels per difficulty are available.
+
+When you first start the game, the first level will be selected and will have a
+code mentioned. You need a code in order to be able to play a level. Once you
+complete a level, the code for the next level will be added to a cookie, and the
+gameselect page will add the code for that level.
+
+Now when you start a game, lemmings.html will be loaded with parameters for the
+selected level, which includes the difficulty, the levelnumber and the
+levelcode. Based upon those parameters, it will load the levelfile that is named
+as follows:
+
+[difficulty]_level[levelnumber]_[levelcode].js
+
+If this file cannot be loaded (because a wrong code has been entered), the page
+will forward you to wrongcode.html. If it can be loaded, the levelfile itself
+will include the codebase for the level. This codebase contains the full level-
+description in the form of a compressed array. It has been seperated from the
+levelfiles because some playfields are used for more than 1 level.
+
+Besides the leveldescription, the codebase also contains an array with
+additional graphics to be loaded; these graphics are preloaded first from the
+preload function in control.js. When the graphics have been loaded the game
+initializes. First the music is started from routine init_music, that reloads
+the playmusic frame with the name of the music file to be played. After that the
+general init() routine is called. This init() routine performs the following:
+
+-decompresses the compressed leveldescription into a 2-dimensional array. For
+each pixel in this array the level is described by the following numbers:
+
+// level grid
+//
+// , = empty till end of row (all 0)
+// xxx = write xxx to level
+// x{y} = repeat y x times
+// [z] = repeat line z times
+//
+// 0 = empty (lemming can walk)
+// 1 = soft material (lemming can bash, mine or dig)
+// 2 = soft material that can only be destroyed right to left
+// 3 = soft material that can only be destroyed left to right
+// 4 = hard material (lemming cannot get through)
+// 5 = water / poison (lemming will drown)
+// 6 = fire / some traps (lemming will burn)
+// 7 = trap
+// 8 = exit
+// 9 = slicer
+
+-sets general options
+-initializes the scrollbar
+-places the images
+-starts the music
+-calls start_game with a small delay
+
+
+
+The Game Itself
+---------------
+
+The game starts with the execution of the start_game() function, this function
+only does 3 things: it places the animated opening door images, plays the
+'lets go' sound and starts the timer routine.
+Basically the timer is the heart of the game; this routine is executed every 60
+milliseconds through a self-inducted setTimeout and in this routine the lemmings
+are created by calling the morelemmings() routine when it is time to create a
+new lemming based upon the release rate.
+
+The lemmings itself are independant objects with their own animation routine.
+For each lemming the lemming_animate() routine is executed every 80 milliseconds
+This routine calls the correct animation function based upon the lemmings
+animation type. The animation function determines wether a lemming should
+continue it's current animation, should turn around, fall, change the animation
+type etcetera. All based upon the current position of the lemming and the
+immediate surrounding.
+After that is determined the lemming will be repositioned on the screen, and the
+image of the lemming is advanced to create a look of movement (basically a
+lemming is made up of different images that will be 'played' in sequence; have a
+look at one of the lemming_xxx.gif images in the img directory).
+
+The lemmings are stored in a global array; this array also contains references
+to the lemmings container and the image element on the screen, which allows for
+fast updates in the document. Most common actions are performed from prototype
+methods that are defined for the common Lemming object.
+When a lemming dies it is removed from the document, and the array element is
+deleted.
+
+Each lemming also has a mouseover, mouseout and onclick event attached that
+enables it to be targetted and selected. The select function is called
+lemming_target_sel() and determines if the selected lemming can be changed into
+the selected type (one of the buttons on the button of the screen). For some
+animation types it calls a special animation init routine to do some additional
+checks (for instance, selecting a digger while a lemming is walking on a steel
+surface will cancel the selection).
+
+Basically most animation routines are quite simpel; for the most common types
+(walking and falling) first a lookup is made to determine if we need to do
+something special. This will trigger the lemming_special_ani() routine in which
+we further determine if some special action is required (eg lemming walks into
+a trap, lemming falls into water, lemming is standing in front of the exit etc.)
+By handling all these exceptional cases seperately, and only having 1 lookup to
+determine if we should handle some exception greatly enhances the performance.
+
+
+End of the game
+---------------
+
+The game ends when all lemmings are either dead or made it home, or when the
+time limit is reached (that will trigger the explode animation for all remaining
+lemmings). Than the game_over routine is triggered that will forward the page to
+result.html and passes the information on how many lemmings were saved as
+arguments. Based upon this information, and the information from the level
+itself this page will show if you made the objective, and if so it will write
+the code for the next level to the cookie.
+
+
+That's it in a nutshell, I tried to write the code itself in a straight-forward
+way, so it shouldn't be too difficult to see what it does. Although I tend to
+mix up different naming styles the names of the functions and variables should
+be pretty descriptive.
+
+
+Have fun!
+
+
+crisp
+freesoftware@xs4all.nl
+
+
+
+Afterword
+---------
+
+This is the version of the docu that I put online for all you that are
+interested in this game from a technical point of view. The download of the code
+itself (at http://www.xs4all.nl/~crisp/lemmings/lemmings.zip) does not contain
+images or the music as mentioned; that's because I have no permission (yet) to
+use those elements and publish it. However if you have any questions about that,
+feel free to email me.
+The script I used to create the levelcode is available as a seperate zip and is
+
+located at http://www.xs4all.nl/~crisp/lemmings/makelevel.zip
+

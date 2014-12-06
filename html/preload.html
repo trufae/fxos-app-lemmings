@@ -1,0 +1,197 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="no">
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<title>DHTML Lemmings&trade; Loading...</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<noscript>
+  <meta http-equiv="Refresh" content="0;URL=nojavascript.html">
+</noscript>
+<script type="text/javascript" src="../js/standards.js"></script>
+<script type="text/javascript">
+
+var numpics;
+var images = new Array();
+
+function preload_images() {
+
+  if (typeof document.getElementById == 'undefined' ||
+      typeof document.createElement == 'undefined') window.location.replace('nojavascript.html');
+
+  var preload_arr = [
+    '../img/progressbar.gif',
+    '../img/control_bash.gif',
+    '../img/control_bash_sel.gif',
+    '../img/control_block.gif',
+    '../img/control_block_sel.gif',
+    '../img/control_build.gif',
+    '../img/control_build_sel.gif',
+    '../img/control_climb.gif',
+    '../img/control_climb_sel.gif',
+    '../img/control_dig.gif',
+    '../img/control_dig_sel.gif',
+    '../img/control_explode.gif',
+    '../img/control_explode_sel.gif',
+    '../img/control_float.gif',
+    '../img/control_float_sel.gif',
+    '../img/control_less.gif',
+    '../img/control_less_sel.gif',
+    '../img/control_mine.gif',
+    '../img/control_mine_sel.gif',
+    '../img/control_more.gif',
+    '../img/control_more_sel.gif',
+    '../img/control_nuke.gif',
+    '../img/control_nuke_sel.gif',
+    '../img/control_pause.gif',
+    '../img/control_pause_sel.gif',
+    '../img/control_speed.gif',
+    '../img/control_speed_sel.gif',
+    '../img/hole_basher_l.gif',
+    '../img/hole_basher_r.gif',
+    '../img/hole_digger.gif',
+    '../img/hole_miner_l.gif',
+    '../img/hole_miner_r.gif',
+    '../img/hole_exploder.gif',
+    '../img/lemming_bash_l.gif',
+    '../img/lemming_bash_r.gif',
+    '../img/lemming_block_l.gif',
+    '../img/lemming_block_r.gif',
+    '../img/lemming_build_l.gif',
+    '../img/lemming_build_r.gif',
+    '../img/lemming_climb_l.gif',
+    '../img/lemming_climb_r.gif',
+    '../img/lemming_climbtop_l.gif',
+    '../img/lemming_climbtop_r.gif',
+    '../img/lemming_confused_l.gif',
+    '../img/lemming_confused_r.gif',
+    '../img/lemming_dig_l.gif',
+    '../img/lemming_dig_r.gif',
+    '../img/lemming_drown_s.gif',
+    '../img/lemming_explode_s.gif',
+    '../img/lemming_fall_l.gif',
+    '../img/lemming_fall_r.gif',
+    '../img/lemming_float_l.gif',
+    '../img/lemming_float_r.gif',
+    '../img/lemming_floatstart_l.gif',
+    '../img/lemming_floatstart_r.gif',
+    '../img/lemming_frie_s.gif',
+    '../img/lemming_home_s.gif',
+    '../img/lemming_mine_l.gif',
+    '../img/lemming_mine_r.gif',
+    '../img/lemming_splut_s.gif',
+    '../img/lemming_walk_l.gif',
+    '../img/lemming_walk_r.gif',
+    '../img/scroll_bg.gif',
+    '../img/scroll_bg_sel.gif',
+    '../img/scroll_butt.gif',
+    '../img/scroll_left.gif',
+    '../img/scroll_left_sel.gif',
+    '../img/scroll_right.gif',
+    '../img/scroll_right_sel.gif',
+    '../img/lemming_left.gif',
+    '../img/lemming_right.gif',
+    '../img/fun.gif',
+    '../img/logo.gif',
+    '../img/taxing.gif',
+    '../img/tricky.gif',
+    '../img/mayhem.gif',
+    '../img/target.gif',
+    '../img/target_left.gif',
+    '../img/target_right.gif',
+    '../img/vinkje.gif'
+  ];
+
+  numpics = preload_arr.length;
+
+  preload(preload_arr);
+
+}
+
+function preload(arr) {
+
+  for (var i = 0; i < arr.length; i++) {
+
+    images[i] = new Image();
+    images[i].loaded = false;
+    images[i].onload = imgloaded;
+    images[i].onerror = imgloaded;
+    images[i].onabort = imgloaded;
+    images[i].src = arr[i];
+
+  }
+
+  setTimeout('progress()', 100);
+
+}
+
+function imgloaded() {
+
+  this.loaded = true;
+
+}
+
+var windowwidth = 560;
+function progress() {
+
+  var curprogress = 0;
+  for (var i = 0; i < numpics; i++) {
+
+    if (images[i].complete || images[i].loaded) {
+
+      images[i].loaded = true;
+      curprogress++;
+
+    }
+
+  }
+
+  var w = Math.round(curprogress * (windowwidth / numpics));
+  document.getElementById('progressbar').style.width = w+'px';
+
+  if (curprogress == numpics) setTimeout('window.location.replace(\'menu.html\');', 2000);
+  else setTimeout('progress()', 100);
+
+}
+
+function scaleStuff () {
+	function viewPort() {
+		var h = window.innerHeight 
+		|| document.documentElement.clientHeight 
+		|| document.getElementsByTagName('body')[0].clientHeight;
+		var w = window.innerWidth 
+		|| document.documentElement.clientWidth 
+		|| document.getElementsByTagName('body')[0].clientWidth;
+
+		return {width : w, height : h};
+	}
+
+	var size = viewPort();
+	var pb = document.getElementById("progressbar");
+	pb.style.width = size.width - 150;
+	windowwidth = size.width- (size.width/4);
+		var b = document.getElementById ("content");
+		b.style.top = "10px";
+		b.style.height = ""+(size.height - 60) + "px";
+}
+window.onresize = scaleStuff;
+document.addEventListener ('DOMContentLoaded', function (e) {
+	scaleStuff ();
+});
+
+</script>
+</head>
+<body onload="preload_images()">
+<div id="content">
+<div id="loading">Loading DHTML Lemmings&trade;....</div>
+<div id="progressbar">&nbsp;</div>
+<div id="version"><script type="text/javascript">document.write(version+' '+formatdate(rts));</script></div>
+<div id="copyright"><a href="gpl.html" target="_self" onfocus="this.blur()">GNU copyright</a> &copy; 2004 by crisp - <a href="mailto:freesoftware&#x40;xs4all.nl" target="_blank" onfocus="this.blur()">freesoftware[at]xs4all.nl</a>
+<br />
+Brought to FirefoxOS in 2014 by pancake[at]nopcode[dot]org
+</div>
+</div>
+</body>
+</html>

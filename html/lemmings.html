@@ -1,0 +1,164 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta name="viewport" content="width=device-width, user-scalable=no">
+<meta http-equiv="imagetoolbar" content="no">
+<title>Lemmings!&trade; - Loading Level</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<script type="text/javascript" src="../js/standards.js"></script>
+<script type="text/javascript" src="../js/cookies.js"></script>
+<script type="text/javascript" src="../js/control.js"></script>
+<script type="text/javascript" src="../js/scroll.js"></script>
+<script type="text/javascript" src="../js/animate.js"></script>
+<script type="text/javascript" src="../js/sound.js"></script>
+<script type="text/javascript" src="../js/lemmings.js"></script>
+</head>
+<script type="text/javascript">
+
+var in_game = 1;
+var sound = false;
+var level = false;
+var level_music = false;
+var rating = getURLParameter(window.location.search, 'rating');
+var levelnum = parseInt(getURLParameter(window.location.search, 'level'), 10);
+var code = getURLParameter(window.location.search, 'code');
+if (isNaN(levelnum) || code == '') {
+  window.location.replace('menu.html');
+} else {
+  if (validate(code) == true) include('../levels/'+rating+'_level'+levelnum+'_'+code+'.js');
+  else include('../levels/'+code+'.js');
+}
+
+</script>
+<body onload="preload_images()">
+<div id="content" style="overflow: scroll;border: 0px">
+  <div id="loading">Loading level <script type="text/javascript">document.write(levelnum);</script>....</div>
+  <div id="progressbar">&nbsp;</div>
+  <div id="playground">
+    <img id="target" src="../img/target.gif" alt="" />
+  </div>
+  <div id="scrollbar">
+    <div id="scrollbg"></div>
+    <img id="scrollLeft" src="../img/scroll_left.gif" alt="" />
+    <img id="scroller" src="../img/scroll_butt.gif" alt="" />
+    <img id="scrollRight" src="../img/scroll_right.gif" alt="" />
+  </div>
+</div>
+<div id="controls">
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_climb">&nbsp;</div>
+      <img class="button" id="lemming_climb" src="../img/control_climb.gif" alt="" onmouseover="status_message('Choose Climber Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('climb')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_float">&nbsp;</div>
+      <img class="button" id="lemming_float" src="../img/control_float.gif" alt="" onmouseover="status_message('Choose Floater Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('float')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_explode">&nbsp;</div>
+      <img class="button" id="lemming_explode" src="../img/control_explode.gif" alt="" onmouseover="status_message('Choose Exploder Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('explode')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_block">&nbsp;</div>
+      <img class="button" id="lemming_block" src="../img/control_block.gif" alt="" onmouseover="status_message('Choose Blocker Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('block')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_build">&nbsp;</div>
+      <img class="button" id="lemming_build" src="../img/control_build.gif" alt="" onmouseover="status_message('Choose Builder Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('build')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_bash">&nbsp;</div>
+      <img class="button" id="lemming_bash" src="../img/control_bash.gif" alt="" onmouseover="status_message('Choose Basher Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('bash')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_mine">&nbsp;</div>
+      <img class="button" id="lemming_mine" src="../img/control_mine.gif" alt="" onmouseover="status_message('Choose Miner Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('mine')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_dig">&nbsp;</div>
+      <img class="button" id="lemming_dig" src="../img/control_dig.gif" alt="" onmouseover="status_message('Choose Digger Skill')" onmouseout="status_message(0)" onmousedown="toggle_lemming('dig')" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_more">&nbsp;</div>
+      <img class="button" id="release_more" src="../img/control_more.gif" alt="" onmouseover="status_message('Increase Lemmings release rate')" onmouseout="status_message(0)" onmousedown="toggle_release(+1)" onmouseup="stop_release()" />
+    </div>
+  </div>
+  <div class="control">
+    <div class="relative">
+      <div class="num" id="num_less">&nbsp;</div>
+      <img class="button" id="release_less" src="../img/control_less.gif" alt="" onmouseover="status_message('Decrease Lemmings release rate')" onmouseout="status_message(0)" onmousedown="toggle_release(-1)" onmouseup="stop_release()" />
+    </div>
+  </div>
+  <div class="control">
+    <img id="pause" class="button" src="../img/control_pause.gif" alt="" onmouseover="if (!paused) status_message('Pause the game'); else status_message('Continue the game');" onmouseout="status_message(0)" onmousedown="toggle_pause(this)" />
+  </div>
+  <div class="control">
+    <img id="speed" class="button" src="../img/control_speed.gif" alt="" onmouseover="status_message('Fast Forward mode')" onmouseout="status_message(0)" onmousedown="speed_up(this)" />
+  </div>
+  <div class="control">
+    <img id="nuke" class="button" src="../img/control_nuke.gif" alt="" onmouseover="status_message('Kill all Lemmings and end level')" onmouseout="status_message(0)" onmousedown="kill_em_all(this)" />
+  </div>
+</div>
+<div id="statusbar">
+  <div class="status" id="status">&nbsp;</div>
+  <div class="status" id="out">Out: 0</div>
+  <div class="status" id="home">Home: 0</div>
+  <div class="status" id="time">&nbsp;</div>
+</div>
+<script type="text/javascript">
+if (parent.soundEnabled == true) {
+
+  if (typeof level_music != 'undefined') {
+    parent.musicLoaded = false;
+    parent.frames['bgmusic'].location.replace('playmusic.html?file='+level_music);
+  }
+
+  sound = writeSound('letsgo.wav', 'wav', 'letsgo', 'false');
+  if (sound == true) {
+    writeSound('bang.wav', 'wav', 'bang', 'false');
+    writeSound('chain.wav', 'wav', 'chain', 'false');
+    writeSound('changeop.wav', 'wav', 'changeop', 'false');
+    writeSound('chink.wav', 'wav', 'chink', 'false');
+    writeSound('die.wav', 'wav', 'die', 'false');
+    writeSound('door.wav', 'wav', 'door', 'false');
+    writeSound('electric.wav', 'wav', 'electric', 'false');
+    writeSound('explode.wav', 'wav', 'explode', 'false');
+    writeSound('fire.wav', 'wav', 'fire', 'false');
+    writeSound('glug.wav', 'wav', 'glug', 'false');
+    writeSound('mantrap.wav', 'wav', 'mantrap', 'false');
+    writeSound('mousepre.wav', 'wav', 'mousepre', 'false');
+    writeSound('ohno.wav', 'wav', 'ohno', 'false');
+    writeSound('oing.wav', 'wav', 'oing', 'false');
+    writeSound('scrape.wav', 'wav', 'scrape', 'false');
+    writeSound('slicer.wav', 'wav', 'slicer', 'false');
+    writeSound('splash.wav', 'wav', 'splash', 'false');
+    writeSound('splat.wav', 'wav', 'splat', 'false');
+    writeSound('tenton.wav', 'wav', 'tenton', 'false');
+    writeSound('thud.wav', 'wav', 'thud', 'false');
+    writeSound('thunk.wav', 'wav', 'thunk', 'false');
+    writeSound('ting.wav', 'wav', 'ting', 'false');
+    writeSound('yippee.wav', 'wav', 'yippee', 'false');
+  }
+
+}
+</script>
+</body>
+</html>

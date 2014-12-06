@@ -1,0 +1,27 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="no">
+<title>Known Issues</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<script type="text/javascript" src="../js/standards.js"></script>
+</head>
+<body onload="init_music()">
+<div id="content"><h1>Known Issues</h1>
+<p>As stated on the main menu, this is work in progress (in fact I didn't expect it to become public so soon). There are still several bugs and issues in this version that I am aware of, so just to prevent you from reporting those to me, here's a list:</p>
+<ul>
+  <li>Fast forward isn't working correctely!<br />That's because the game itself already takes up a lot of your CPU time. Whereas the original version could be played on a 7Mhz Amiga, now you'll need at least 500Mhz, but preferably more. Once the CPU is already 100% utiziled it makes no sense to use the fast forward; it makes the timer go off with the animations because the animations are harder (go slower) than the timekeeping itself.<br />
+      So if you haven't got a really really fast PC (like 3Ghz or so - preferably AMD because contrary to what they want you to believe P4's perform quite poor when it comes to DHTML) stay away from the fast forward, at least with a lot of lemmings&trade; around. This is a NO-FIX - there is simply not much I can do about it.</li>
+  <li>The nuke-button isn't working!<br />Try double-clicking it ;) (safety precaution)</li>
+  <li>Not all lemmings&trade; explode when I nuke them!<br />The nuke-effect itself, although pretty, is quite heavy for the browser to display. Therefor I have limited the effect to 10 lemmings&trade; max; else it might lock up your pc.</li>
+  <li>I can't use my functionkeys, my right-mouse-button or select any text!<br />That's because I have disabled it; you shouldn't see this as a normal webpage but as an application. There are too many things depending upon each other that allowing normal browsercontrols could disrupt functionality. The Esc key will always bring you back to the main menu.</li>
+</ul>
+<img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
+<img id="lemmingRight" src="../img/lemming_right.gif" alt="" />
+<div id="back"><a href="menu.html" target="_self" title="menu" onfocus="this.blur()">menu</a></div>
+<div id="next"><a href="issues2.html" target="_self" title="next" onfocus="this.blur()">&gt;&gt;&gt;</a></div>
+</div>
+</body>
+</html>

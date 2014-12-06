@@ -1,0 +1,33 @@
+// levelbeschrijvingen voor tricky levels
+
+var levels = new Array();
+levels[1] = ['This should be a doddle!', 'HCENNONPDW', 0];
+levels[2] = ['We all fall down', '', 0];
+levels[3] = ['A ladder would be handy', '', 0];
+levels[4] = ['Here\'s one I prepared earlier', '', 0];
+levels[5] = ['Careless clicking costs lives', '', 0];
+levels[6] = ['Lemmingology', '', 0];
+levels[7] = ['Been there, seen it, done it', '', 0];
+levels[8] = ['Lemming sanctuary in sight', '', 0];
+levels[9] = ['They just keep on coming', '', 0];
+levels[10] = ['There\'s a lot of them about', '', 0];
+//levels[11] = ['Lemmings in the attic', '', 0];
+//levels[12] = ['Bitter Lemming', '', 0];
+//levels[13] = ['Lemming Drops', '', 0];
+//levels[14] = ['MENACING !!', '', 0];
+//levels[15] = ['Ozone friendly Lemmings', '', 0];
+//levels[16] = ['Luvly Jubly', '', 0];
+//levels[17] = ['Diet Lemmingaid', '', 0];
+//levels[18] = ['It\'s Lemmingentry Watson', '', 0];
+//levels[19] = ['Postcard from Lemmingland', '', 0];
+//levels[20] = ['One way digging to freedom', '', 0];
+//levels[21] = ['All the 6\'s ........', '', 0];
+//levels[22] = ['Turn around young lemmings!', '', 0];
+//levels[23] = ['From The Boundary Line', '', 0];
+//levels[24] = ['Tightrope City', '', 0];
+//levels[25] = ['Cascade', '', 0];
+//levels[26] = ['I have a cunning plan', '', 0];
+//levels[27] = ['The Island of the Wicker people', '', 0];
+//levels[28] = ['Lost something?', '', 0];
+//levels[29] = ['Rainbow Island', '', 0];
+//levels[30] = ['The Crankshaft', '', 0];

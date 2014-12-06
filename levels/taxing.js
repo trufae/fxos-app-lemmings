@@ -1,0 +1,33 @@
+// levelbeschrijvingen voor taxing levels
+
+var levels = new Array();
+levels[1] = ['If at first you don\'t succeed..', 'ONICAJNNFP', 0];
+levels[2] = ['Watch out, there\'s traps about', '', 0];
+levels[3] = ['Heaven can wait (we hope!!!!)', '', 0];
+levels[4] = ['Lend a helping hand....', '', 0];
+levels[5] = ['The Prison!', '', 0];
+levels[6] = ['Compression Method 1', '', 0];
+levels[7] = ['Every Lemming for himself!!!', '', 0];
+levels[8] = ['The Art Gallery', '', 0];
+levels[9] = ['Perseverance', '', 0];
+levels[10] = ['Izzie Wizzie lemmings get busy', '', 0];
+//levels[11] = ['The ascending pillar scenario', '', 0];
+//levels[12] = ['Livin\' On The Edge', '', 0];
+//levels[13] = ['Upsidedown World', '', 0];
+//levels[14] = ['Hunt the Nessy....', '', 0];
+//levels[15] = ['What an AWESOME level', '', 0];
+//levels[16] = ['Mary Poppins\' land', '', 0];
+//levels[17] = ['X marks the spot', '', 0];
+//levels[18] = ['Tribute to M.C.Escher', '', 0];
+//levels[19] = ['Bomboozal', '', 0];
+//levels[20] = ['Walk the web rope', '', 0];
+//levels[21] = ['Feel the heat!', '', 0];
+//levels[22] = ['Come on over to my place', '', 0];
+//levels[23] = ['King of the castle', '', 0];
+//levels[24] = ['Take a running jump.....', '', 0];
+//levels[25] = ['Follow the leader...', '', 0];
+//levels[26] = ['Triple Trouble', '', 0];
+//levels[27] = ['Call in the bomb squad', '', 0];
+//levels[28] = ['POOR WEE CREATURES!', '', 0];
+//levels[29] = ['How do I dig up the way?', '', 0];
+//levels[30] = ['We all fall down', '', 0];

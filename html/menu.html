@@ -1,0 +1,124 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="no">
+<title>DHTML Lemmings&trade; by crisp - Menu</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<script type="text/javascript" src="../js/standards.js"></script>
+<script type="text/javascript" src="../js/cookies.js"></script>
+<script type="text/javascript">
+
+mainmenu = 1;
+
+function init() {
+
+  // set options
+  if (parent.music) document.getElementById('music').checked = true;
+  if (parent.sounds) document.getElementById('sounds').checked = true;
+  if (parent.animations) document.getElementById('animations').checked = true;
+
+  // snif sound support
+  if (parent.soundEnabled == false) {
+    document.getElementById('music').disabled = true;
+    document.getElementById('sounds').disabled = true;
+  }
+
+}
+
+function toggle(what, onoff) {
+
+  parent[what] = onoff.checked? 1:0;
+
+  if (what == 'music') {
+    if (onoff.checked) parent.frames['bgmusic'].playmusic();
+    else parent.frames['bgmusic'].stopmusic();
+  }
+
+  setcookie('SETTINGS', '?music='+parent.music+'&sounds='+parent.sounds+'&animations='+parent.animations);
+
+}
+function scaleStuff () {
+	function viewPort() {
+		var h = window.innerHeight 
+		|| document.documentElement.clientHeight 
+		|| document.getElementsByTagName('body')[0].clientHeight;
+		var w = window.innerWidth 
+		|| document.documentElement.clientWidth 
+		|| document.getElementsByTagName('body')[0].clientWidth;
+
+		return {width : w, height : h};
+	}
+
+	var size = viewPort();
+	var logo = document.getElementById ('logo');
+	var buttons = [ "fun", "tricky", "taxing", "mayhem" ];
+	if ( size.width < 720) {
+		logo.style.width = "314px";
+		logo.style.height = "95px";
+		for (var i=0;i<buttons.length;i++) {
+			var b = document.getElementById (buttons[i]);
+			b.style.width = "150px";
+			b.style.height = "50px";
+		}
+		var b = document.getElementById ("content");
+		b.style.top = "10px";
+		b.style.height = ""+(size.height - 60) + "px";
+	} else {
+		logo.style.width = "628px";
+		logo.style.height = "190px";
+		for (var i=0;i<buttons.length;i++) {
+			var b = document.getElementById (buttons[i]);
+			b.style.width = "100px";
+			b.style.height = "35px";
+			b.style.width = "150px";
+			b.style.height = "50px";
+		}
+		var b = document.getElementById ("content");
+		b.style.top = "10px";
+		b.style.height = ""+(size.height - 60) + "px";
+	}
+	if (size.height < 400) {
+		logo.style.width = "314px";
+		logo.style.height = "95px";
+	}
+}
+window.onresize = scaleStuff;
+document.addEventListener ('DOMContentLoaded', function (e) {
+	scaleStuff ();
+});
+
+</script>
+</head>
+<body onload="init_music()">
+<!-- TODO: double size of the title image if window.size > 640 -->
+<div id="content">
+<center>
+<img id="logo" src="../img/logo.gif" width="314px" height="95px" alt="" style="display: block; margin-top: 10px" />
+<center>
+<div style="position: absolute; top: 10px; left: 185px; color: #ffff00; font-size: 2em; font-weight: bold">DHTML</div>
+<div style="width:326px">
+  <div style="float: left; margin: 5px"><a href="gameselect.html?rating=fun" target="_self" onfocus="this.blur()"><img src="../img/fun.gif" id="fun" border="0" width="100" height="35" /></a></div>
+  <div style="float: left; margin: 5px"><a href="gameselect.html?rating=tricky" target="_self" onfocus="this.blur()"><img src="../img/tricky.gif" id="tricky" border="0" width="100" height="35" /></a></div>
+  <div style="float: left; margin: 5px"><a href="gameselect.html?rating=taxing" target="_self" onfocus="this.blur()"><img src="../img/taxing.gif" id="taxing" border="0" width="100" height="35" /></a></div>
+  <div style="float: left; margin: 5px"><a href="gameselect.html?rating=mayhem" target="_self" onfocus="this.blur()"><img src="../img/mayhem.gif" id="mayhem" border="0" width="100" height="35" /></a></div>
+</div>
+</center>
+<div id="options" style="visibility:hidden">
+  <input id="music" type="checkbox" onclick="toggle('music', this)" /> Music<br />
+  <input id="sounds" type="checkbox" onclick="toggle('sounds', this)" /> Sounds<br />
+  <input id="animations" type="checkbox" onclick="toggle('animations', this)" /> Animations
+</div>
+<img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
+<img id="lemmingRight" src="../img/lemming_right.gif" alt="" />
+<div id="version"><script type="text/javascript">document.write(version+' '+formatdate(rts));</script></div>
+<div id="copyright"><a href="gpl.html" target="_self" onfocus="this.blur()">GNU copyright</a> &copy; 2004 by crisp - <a href="mailto:freesoftware&#x40;xs4all.nl" target="_blank" onfocus="this.blur()">freesoftware[at]xs4all.nl</a>
+<br />
+Brought to FirefoxOS by pancake[at]nopcode[dot]org
+<a href="disclaimer.html" target="_self" onfocus="this.blur()">Disclaimer</a>
+</div>
+</div>
+</body>
+</html>

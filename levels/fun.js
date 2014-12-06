@@ -1,0 +1,33 @@
+// levelbeschrijvingen voor fun levels
+
+var levels = new Array();
+levels[1] = ['Just dig!', 'BAJHLDHBCL', 0];
+levels[2] = ['Only floaters can survive this', '', 0];
+levels[3] = ['Tailor-made for blockers', '', 0];
+levels[4] = ['Now use miners and climbers', '', 0];
+levels[5] = ['You need bashers this time', '', 0];
+levels[6] = ['A task for blockers and bombers', '', 0];
+levels[7] = ['Builders will help you here', '', 0];
+levels[8] = ['Not as complicated as it looks', '', 0];
+levels[9] = ['As long as you try your best', '', 0];
+levels[10] = ['Smile if you love lemmings', '', 0];
+//levels[11] = ['Keep your hair on Mr. Lemming', '', 0];
+//levels[12] = ['Patience', '', 0];
+//levels[13] = ['We all fall down', '', 0];
+//levels[14] = ['Origins and Lemmings', '', 0];
+//levels[15] = ['Don\'t let your eyes deceive you', '', 0];
+//levels[16] = ['Don\'t do anything too hasty', '', 0];
+//levels[17] = ['Easy when you know how', '', 0];
+//levels[18] = ['Let\'s block and blow', '', 0];
+//levels[19] = ['Take good care of my Lemmings', '', 0];
+//levels[20] = ['We are now at LEMCON ONE', '', 0];
+//levels[21] = ['You Live and Lem', '', 0];
+//levels[22] = ['A Beast of a level', '', 0];
+//levels[23] = ['I\'ve lost that Lemming feeling', '', 0];
+//levels[24] = ['Konbanwa Lemming san', '', 0];
+//levels[25] = ['Lemmings Lemmings everywhere', '', 0];
+//levels[26] = ['Nightmare on Lem street', '', 0];
+//levels[27] = ['Let\'s be careful out there', '', 0];
+//levels[28] = ['If only they could fly', '', 0];
+//levels[29] = ['worra lorra lemmings', '', 0];
+//levels[30] = ['Lock up your Lemmings', '', 0];

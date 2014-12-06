@@ -1,0 +1,154 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta name="viewport" content="width=device-width,user-scalable=no">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="imagetoolbar" content="no">
+<title>Lemmings! - Choose game</title>
+<link rel="stylesheet" href="../style/style.css" type="text/css">
+<script type="text/javascript" src="../js/standards.js"></script>
+<script type="text/javascript" src="../js/cookies.js"></script>
+<script type="text/javascript">
+
+var rating = getURLParameter(window.location.search, 'rating');
+
+include('../levels/'+rating+'.js');
+
+var selected_level = 0;
+
+function init() {
+
+  document.getElementById('code').value = selected_level? levels[selected_level][1]:'';
+  document.getElementById('code').onselectstart = allowSelect;
+  document.getElementById('choice').scrollTop = (selected_level - 1) * 16;
+
+}
+
+function selectlevel(i) {
+
+  if (selected_level) {
+    document.getElementById('lvl'+selected_level).style.backgroundColor = '#000000';
+  }
+
+  selected_level = i;
+  document.getElementById('lvl'+selected_level).style.backgroundColor = '#00ff00';
+
+  document.getElementById('code').value = levels[i][1];
+  if (levels[i][1] == '') document.getElementById('code').focus();
+
+}
+
+function play() {
+
+  if (!selected_level) {
+    alert('please select a level');
+    return;
+  }
+  var code = document.getElementById('code').value.toUpperCase();
+  if (code == '') {
+    alert('please enter the code for level '+selected_level);
+    document.getElementById('code').focus();
+    return;
+  }
+
+  window.location.replace('lemmings.html?level='+selected_level+'&rating='+rating+'&code='+code);
+
+  return false;
+
+}
+
+function allowSelect(e) {
+  if (typeof e == 'undefined') e = event;
+  cancelPropagation(e);
+  return true;
+}
+
+function scaleStuff () {
+	function viewPort() {
+		var h = window.innerHeight 
+		|| document.documentElement.clientHeight 
+		|| document.getElementsByTagName('body')[0].clientHeight;
+		var w = window.innerWidth 
+		|| document.documentElement.clientWidth 
+		|| document.getElementsByTagName('body')[0].clientWidth;
+
+		return {width : w, height : h};
+	}
+
+	var size = viewPort();
+	var b = document.getElementById ("content");
+	b.style.top = "10px";
+	b.style.height = ""+(size.height - 60) + "px";
+
+	var b = document.getElementById ("choice");
+	b.style.height = ((size.height-80) / 2) + "px";
+}
+window.onresize = scaleStuff;
+document.addEventListener ('DOMContentLoaded', function (e) {
+	scaleStuff ();
+});
+
+</script>
+</head>
+<body onload="init_music()">
+<div id="content"><h1>Choose Game - rating: <script type="text/javascript">document.write(rating);</script></h1>
+<center>
+<div id="choice">
+<script type="text/javascript">
+
+// get client cookie
+var cookie = getcookie(rating.toUpperCase());
+var completed = getURLParameter(cookie, 'completed').split(',');
+var nextlevel = parseInt(getURLParameter(cookie, 'nextlevel'), 10);
+var nextlevelcode = getURLParameter(cookie, 'nextlevelcode');
+var i;
+
+for (i = 0; i < completed.length; i++) {
+  var codesplit = completed[i].split(':');
+  var level = parseInt(codesplit[0], 10);
+  if (typeof levels[level] != 'undefined') {
+    levels[level][1] = codesplit[1];
+    if (typeof codesplit[2] != 'undefined') levels[level][2] = 1;
+  }
+}
+
+if (!isNaN(nextlevel) && typeof levels[nextlevel] != 'undefined' && levels[nextlevel][2] == 0) {
+  levels[nextlevel][1] = nextlevelcode;
+  selected_level = nextlevel;
+} else if (typeof levels[1] != 'undefined' && levels[1][2] == 0) selected_level = 1;
+
+// write options
+for (i = 1; i < levels.length; i++) {
+
+  document.write('<div id="lvl'+i+'" onmouseover="if(this.className!=\'selected\')this.style.backgroundColor=\'#0000ff\'" onmouseout="this.style.backgroundColor=\'\'" onclick="selectlevel('+i+')" ondblclick="play()"');
+  if (i == selected_level) document.write(' class="selected"');
+  document.write('>'+i+'. '+levels[i][0]);
+  if (levels[i][1] && levels[i][2]) document.write(' <img src="../img/vinkje.gif" width="9" height="9" alt="" />');
+  document.write('<\/div>');
+
+}
+
+</script>
+</div>
+<div class="center" style="margin-top: 10px">
+<center>
+<table>
+<tr><td>
+<h2><a href="menu.html" target="_self" onfocus="this.blur()">Menu</a></h2>
+</td><td>
+  <form style="display:inline" action="#" onsubmit="return play()"><input type="text" id="code" value="" /></form>
+</td><td>
+  <h2><a href="javascript://" target="_self" onclick="return play()" onfocus="this.blur()">Play!</a></h2>
+</td></tr>
+</table>
+</center>
+</div>
+</center>
+<img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
+<img id="lemmingRight" src="../img/lemming_right.gif" alt="" />
+<div id="version"><script type="text/javascript">document.write(version+' '+formatdate(rts));</script></div>
+<div id="copyright"><a href="gpl.html" target="_self" onfocus="this.blur()">GNU copyright</a> &copy; 2004 by crisp - <a href="mailto:freesoftware&#x40;xs4all.nl" target="_blank" onfocus="this.blur()">freesoftware[at]xs4all.nl</a></div>
+</div>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<title>Music Wrapper</title>
+<script type="text/javascript" src="../js/cookies.js"></script>
+<script type="text/javascript" src="../js/sound.js"></script>
+<script type="text/javascript">
+
+var player = false;
+var sound = false;
+
+function playmusic() {
+
+  try {
+
+    if (parent.soundEnabled == true) player.Play();
+    parent.playing = true;
+    return true;
+
+  } catch(e) {
+
+    return false;
+
+  }
+
+}
+
+function stopmusic() {
+
+  try {
+
+    if (parent.soundEnabled == true) player.Stop();
+    parent.playing = false;
+    return true;
+
+  } catch(e) {
+
+    return false;
+
+  }
+
+}
+
+function checkReady() {
+
+  if (sound == false) {
+    parent.soundEnabled = false;
+  } else {
+    player = document.getElementById('bgmusic');
+    if (typeof player == 'undefined' || typeof player.Play == 'undefined') parent.soundEnabled = false;
+    if (typeof player.isSoundCardEnabled != 'undefined' && player.isSoundCardEnabled() == false) parent.soundEnabled = false;
+  }
+
+  setTimeout('parent.musicLoaded=true', 100);
+
+}
+
+</script>
+</head>
+<body onload="checkReady()" style="background-color:#000000">
+<script type="text/javascript">
+
+  // get filename
+  var file = getURLParameter(window.location.search, 'file');
+
+  if (file) sound = writeSound(file, 'midi', 'bgmusic', 'true');
+
+</script>
+</body>
+</html>
