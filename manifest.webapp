@@ -3,7 +3,7 @@
   "launch_path": "/index.html",
   "description": "A port of DHTML Lemmings for FxOS",
   "default_locale": "en",
-  "version": "0.1.0",
+  "version": "0.2.0",
   "developer": {
     "name": "pancake",
     "url": "http://github.com/radare/fxos-app-lemmings/"

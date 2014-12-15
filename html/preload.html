@@ -135,23 +135,19 @@ function imgloaded() {
 
 var windowwidth = 560;
 function progress() {
-
   var curprogress = 0;
   for (var i = 0; i < numpics; i++) {
-
     if (images[i].complete || images[i].loaded) {
-
       images[i].loaded = true;
       curprogress++;
-
     }
-
   }
 
   var w = Math.round(curprogress * (windowwidth / numpics));
   document.getElementById('progressbar').style.width = w+'px';
 
-  if (curprogress == numpics) setTimeout('window.location.replace(\'menu.html\');', 2000);
+  if (curprogress == numpics)
+	setTimeout('window.location.replace(\'menu.html\');', 2000);
   else setTimeout('progress()', 100);
 
 }
@@ -171,7 +167,7 @@ function scaleStuff () {
 	var size = viewPort();
 	var pb = document.getElementById("progressbar");
 	pb.style.width = size.width - 150;
-	windowwidth = size.width- (size.width/4);
+	windowwidth = size.width - (size.width/8);
 		var b = document.getElementById ("content");
 		b.style.top = "10px";
 		b.style.height = ""+(size.height - 60) + "px";

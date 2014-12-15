@@ -18,9 +18,9 @@
 <script type="text/javascript">
 
 var in_game = 1;
-var sound = false;
+var sound = true;
 var level = false;
-var level_music = false;
+var level_music = true;
 var rating = getURLParameter(window.location.search, 'rating');
 var levelnum = parseInt(getURLParameter(window.location.search, 'level'), 10);
 var code = getURLParameter(window.location.search, 'code');
@@ -124,40 +124,48 @@ if (isNaN(levelnum) || code == '') {
   <div class="status" id="time">&nbsp;</div>
 </div>
 <script type="text/javascript">
-if (parent.soundEnabled == true) {
+//if (parent.soundEnabled == true) {
+if (true) {
 
   if (typeof level_music != 'undefined') {
     parent.musicLoaded = false;
+level_music = level_music.replace (/tim/, "");
+level_music = level_music.replace (/lemmin/, "");
+level_music = "level-0"+ level_music[0] + ".ogg";
+level_music = "../../levels/music/"+ level_music;
+
+// mute
+ //   parent.frames['bgmusic'].location.replace('playmusic.html?file=');
+/* start playing music after some delay  */
     parent.frames['bgmusic'].location.replace('playmusic.html?file='+level_music);
   }
 
-  sound = writeSound('letsgo.wav', 'wav', 'letsgo', 'false');
+  sound = writeSound('letsgo.ogg', 'ogg', 'letsgo', false);
   if (sound == true) {
-    writeSound('bang.wav', 'wav', 'bang', 'false');
-    writeSound('chain.wav', 'wav', 'chain', 'false');
-    writeSound('changeop.wav', 'wav', 'changeop', 'false');
-    writeSound('chink.wav', 'wav', 'chink', 'false');
-    writeSound('die.wav', 'wav', 'die', 'false');
-    writeSound('door.wav', 'wav', 'door', 'false');
-    writeSound('electric.wav', 'wav', 'electric', 'false');
-    writeSound('explode.wav', 'wav', 'explode', 'false');
-    writeSound('fire.wav', 'wav', 'fire', 'false');
-    writeSound('glug.wav', 'wav', 'glug', 'false');
-    writeSound('mantrap.wav', 'wav', 'mantrap', 'false');
-    writeSound('mousepre.wav', 'wav', 'mousepre', 'false');
-    writeSound('ohno.wav', 'wav', 'ohno', 'false');
-    writeSound('oing.wav', 'wav', 'oing', 'false');
-    writeSound('scrape.wav', 'wav', 'scrape', 'false');
-    writeSound('slicer.wav', 'wav', 'slicer', 'false');
-    writeSound('splash.wav', 'wav', 'splash', 'false');
-    writeSound('splat.wav', 'wav', 'splat', 'false');
-    writeSound('tenton.wav', 'wav', 'tenton', 'false');
-    writeSound('thud.wav', 'wav', 'thud', 'false');
-    writeSound('thunk.wav', 'wav', 'thunk', 'false');
-    writeSound('ting.wav', 'wav', 'ting', 'false');
-    writeSound('yippee.wav', 'wav', 'yippee', 'false');
+    writeSound('bang.ogg', 'ogg', 'bang', false);
+    writeSound('chain.ogg', 'ogg', 'chain', false);
+    writeSound('changeop.ogg', 'ogg', 'changeop', false);
+    writeSound('chink.ogg', 'ogg', 'chink', false);
+    writeSound('die.ogg', 'ogg', 'die', false);
+    writeSound('door.ogg', 'ogg', 'door', false);
+    writeSound('electric.ogg', 'ogg', 'electric', false);
+    writeSound('explode.ogg', 'ogg', 'explode', false);
+    writeSound('fire.ogg', 'ogg', 'fire', false);
+    writeSound('glug.ogg', 'ogg', 'glug', false);
+    writeSound('mantrap.ogg', 'ogg', 'mantrap', false);
+    writeSound('mousepre.ogg', 'ogg', 'mousepre', false);
+    writeSound('ohno.ogg', 'ogg', 'ohno', false);
+    writeSound('oing.ogg', 'ogg', 'oing', false);
+    writeSound('scrape.ogg', 'ogg', 'scrape', false);
+    writeSound('slicer.ogg', 'ogg', 'slicer', false);
+    writeSound('splash.ogg', 'ogg', 'splash', false);
+    writeSound('splat.ogg', 'ogg', 'splat', false);
+    writeSound('tenton.ogg', 'ogg', 'tenton', false);
+    writeSound('thud.ogg', 'ogg', 'thud', false);
+    writeSound('thunk.ogg', 'ogg', 'thunk', false);
+    writeSound('ting.ogg', 'ogg', 'ting', false);
+    writeSound('yippee.ogg', 'ogg', 'yippee', false);
   }
-
 }
 </script>
 </body>

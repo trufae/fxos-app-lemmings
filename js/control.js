@@ -116,9 +116,12 @@ function init() {
   // start music
   if (parent.soundEnabled == false) {
     music = 0;
-    sounds = 0;
+    //sounds = 0;
+// always play everything
   } else if (sound == false) sounds = 0;
-  if (music != 0) parent.frames['bgmusic'].playmusic();
+  if (music != 0) {
+    parent.frames['bgmusic'].playmusic();
+  }
 
   setTimeout('start_game()', 1000);
 

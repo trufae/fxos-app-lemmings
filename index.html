@@ -20,8 +20,8 @@ var animations = 1;
 // get cookie
 var cookie = getcookie('SETTINGS');
 if (cookie != '') {
-  music = parseInt(getURLParameter(cookie, 'music'), 10);
-  sounds = parseInt(getURLParameter(cookie, 'sounds'), 10);
+  //music = parseInt(getURLParameter(cookie, 'music'), 10);
+  //sounds = parseInt(getURLParameter(cookie, 'sounds'), 10);
   animations = parseInt(getURLParameter(cookie, 'animations'), 10);
 }
 
@@ -42,10 +42,8 @@ launchIntoFullscreen(document.body);
 
 </script>
 </head>
-<audio loop autoplay src="lemmings.ogg">
-</audio>
 <frameset rows="1,*" border="0" framespacing="0">
-  <frame name="bgmusic" src="html/playmusic.html?file=lemmings.mid" frameborder="0" scrolling="no" noresize="noresize" marginwidth="0" marginheight="0" />
+  <frame id="bgmusic" name="bgmusic" src="html/playmusic.html?file=../../levels/music/level-01.ogg&now=true" frameborder="0" scrolling="no" noresize="noresize" marginwidth="0" marginheight="0" />
   <frame name="main" src="html/preload.html" frameborder="0" scrolling="no" noresize="noresize" marginwidth="0" marginheight="0" />
   <noframes>
     <body>
