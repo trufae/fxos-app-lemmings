@@ -124,9 +124,9 @@ function gotoMenu () {
 <!--
 <a href="menu.html" target="_self" onfocus="this.blur()">Menu</a>
 -->
-<a onclick="javascript:gotoMenu()" target="_self" onfocus="this.blur()">Menu</a>
-<script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Play Again<\/a>&nbsp;&nbsp;&nbsp;');
-if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next Level<\/a>&nbsp;&nbsp;&nbsp;');</script>
+<a onclick="javascript:gotoMenu()" href="#" target="_self" onfocus="this.blur()">Menu</a>
+<script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Again<\/a>&nbsp;&nbsp;&nbsp;');
+if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next<\/a>');</script>
 </h2>
 
 <img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
