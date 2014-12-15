@@ -29,9 +29,9 @@ function playsound(which) {
 			}
 			s.play();
 		} else {
-			alert ("CANNOT RESOLVE "+which);
+			console.error ("CANNOT RESOLVE "+which);
 		}
 	} catch(e) {
-		alert(which);
+		console.error(which);
 	}
 }

@@ -27,7 +27,8 @@ var code = getURLParameter(window.location.search, 'code');
 if (isNaN(levelnum) || code == '') {
   window.location.replace('menu.html');
 } else {
-  if (validate(code) == true) include('../levels/'+rating+'_level'+levelnum+'_'+code+'.js');
+  if (validate(code) == true)
+	include('../levels/'+rating+'_level'+levelnum+'_'+code+'.js');
   else include('../levels/'+code+'.js');
 }
 

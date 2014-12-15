@@ -13,50 +13,48 @@ var sound = true;
 
 var delay = 3000;
 function playmusic() {
-
-setTimeout (function () {
-  try {
-
-player.currentTime = 0;
-player.play ();
-  //  if (parent.soundEnabled == true) player.Play();
-    parent.playing = true;
-
-    return true;
-
-  } catch(e) {
-
-    return false;
-
-  }
-}, delay);
-
+	setTimeout (function () {
+		try {
+			try {
+				var se = document.getElementById ('bgmusic_sound');
+				if (se) {
+					se.play ();
+				} else {
+					console.error ("music element not yet available");
+				}
+			} catch (e) {
+				console.error ("An exception happened");
+			}
+			//  if (parent.soundEnabled == true) player.Play();
+			parent.playing = true;
+			return true;
+		} catch(e) {
+			console.error ("major error "+e);
+			return false;
+		}
+	}, delay);
 }
 
 function stopmusic() {
-  try {
-
-  //  if (parent.soundEnabled == true) player.currentTime = false;
-    parent.playing = false;
-    return true;
-
-  } catch(e) {
-
-    return false;
-
-  }
+	try {
+		//  if (parent.soundEnabled == true) player.currentTime = false;
+		parent.playing = false;
+		return true;
+	} catch(e) {
+		return false;
+	}
 }
 
 function checkReady() {
-  if (sound == false) {
-    parent.soundEnabled = false;
-  } else {
-    player = document.getElementById('bgmusic');
-    //if (typeof player == 'undefined' || typeof player.Play == 'undefined') parent.soundEnabled = false;
-    //if (typeof player.isSoundCardEnabled != 'undefined' && player.isSoundCardEnabled() == false) parent.soundEnabled = false;
-  }
+	if (sound == false) {
+		parent.soundEnabled = false;
+	} else {
+		player = document.getElementById('bgmusic');
+		//if (typeof player == 'undefined' || typeof player.Play == 'undefined') parent.soundEnabled = false;
+		//if (typeof player.isSoundCardEnabled != 'undefined' && player.isSoundCardEnabled() == false) parent.soundEnabled = false;
+	}
 
-  setTimeout('parent.musicLoaded=true', 100);
+	setTimeout('parent.musicLoaded=true', 100);
 }
 
 </script>
@@ -64,15 +62,15 @@ function checkReady() {
 <body onload="checkReady()" style="background-color:#000000">
 <script type="text/javascript">
 
-  // get filename
-  var file = getURLParameter(window.location.search, 'file');
-  var now = getURLParameter(window.location.search, 'now');
+// get filename
+var file = getURLParameter(window.location.search, 'file');
+var now = getURLParameter(window.location.search, 'now');
 if (now)
-delay = 0;
+	delay = 0;
 
-  if (file) {
-	sound = writeSound(file, 'ogg', 'bgmusic', true);
-	var se = document.getElementById ('bgmusic');
+if (file) {
+	sound = writeSound(file, 'ogg', 'bgmusic_sound', true);
+	var se = document.getElementById ('bgmusic_sound');
 	try {
 		if (se) {
 			se.pause ();
@@ -80,7 +78,7 @@ delay = 0;
 		}
 	} catch (e) {
 	}
-  }
+}
 
 </script>
 </body>
