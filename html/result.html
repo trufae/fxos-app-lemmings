@@ -112,11 +112,19 @@ if (nextlevel >= levels.length && r >= n) {
   document.write('<h2>Mayhem!</h2>A little more practice on this level is definitely recommended.');
 }
 
+function gotoMenu () {
+// workaround to make music play again
+	window.top.location.replace('../index.html');
+}
+
 </script>
 </div>
 <h2 style="margin-top: 40px">
 
+<!--
 <a href="menu.html" target="_self" onfocus="this.blur()">Menu</a>
+-->
+<a onclick="javascript:gotoMenu()" target="_self" onfocus="this.blur()">Menu</a>
 <script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Play Again<\/a>&nbsp;&nbsp;&nbsp;');
 if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next Level<\/a>&nbsp;&nbsp;&nbsp;');</script>
 </h2>
