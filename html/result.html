@@ -117,6 +117,11 @@ function gotoMenu () {
 	window.top.location.replace('../index.html');
 }
 
+function doNext() {
+	document.write ("<div style='top:0px;left:0px;background-color:black;width:100%;height:100%;color:white;position:absolute'><br /><br /><center>Loading...</center></div>");
+	return true;
+}
+
 </script>
 </div>
 <h2 style="margin-top: 40px">
@@ -124,9 +129,9 @@ function gotoMenu () {
 <!--
 <a href="menu.html" target="_self" onfocus="this.blur()">Menu</a>
 -->
-<a onclick="javascript:gotoMenu()" href="#" target="_self" onfocus="this.blur()">Menu</a>
-<script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Again<\/a>&nbsp;&nbsp;&nbsp;');
-if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next<\/a>');</script>
+<a onclick="javascript:gotoMenu()" href="#" target="_self" onfocus="this.blur()">Menu</a>&nbsp;&nbsp;
+<script type="text/javascript">document.write('<a onclick="javascript:doNext()" href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Again<\/a>&nbsp;&nbsp;&nbsp;');
+if (nextlevel < levels.length && r >= n) document.write('<a onclick="javascript:doNext()" href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next<\/a>');</script>
 </h2>
 
 <img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />

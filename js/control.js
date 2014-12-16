@@ -745,6 +745,7 @@ function place_image(image) {
 
   var e = document.createElement('img');
   e.className = 'element';
+  e.style = "image-rendering: optimizeSpeed;image-rendering: -moz-crisp-edges;";
   e.style.height = level_images[image][2]+'px';
   e.style.width = level_images[image][3]+'px';
   e.style.top = level_images[image][4]+'px';
