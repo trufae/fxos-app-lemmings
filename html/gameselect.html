@@ -99,7 +99,7 @@ document.addEventListener ('DOMContentLoaded', function (e) {
 <script type="text/javascript">
 
 // get client cookie
-var cookie = getcookie(rating.toUpperCase());
+var cookie = localStorage.getItem (rating.toUpperCase()) || "";
 var completed = getURLParameter(cookie, 'completed').split(',');
 var nextlevel = parseInt(getURLParameter(cookie, 'nextlevel'), 10);
 var nextlevelcode = getURLParameter(cookie, 'nextlevelcode');
@@ -138,7 +138,7 @@ for (i = 1; i < levels.length; i++) {
 <tr><td>
 <h2><a href="menu.html" target="_self" onfocus="this.blur()">Menu</a></h2>
 </td><td>
-  <form style="display:inline" action="#" onsubmit="return play()"><input type="text" id="code" value="" /></form>
+  <form style="display:inline" action="#" onsubmit="return play()"><input style="text-align:center" type="text" id="code" value="" /></form>
 </td><td>
   <h2><a href="javascript://" target="_self" onclick="return play()" onfocus="this.blur()">Play!</a></h2>
 </td></tr>

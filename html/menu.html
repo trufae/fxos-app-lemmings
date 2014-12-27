@@ -36,7 +36,7 @@ function toggle(what, onoff) {
     else parent.frames['bgmusic'].stopmusic();
   }
 
-  setcookie('SETTINGS', '?music='+parent.music+'&sounds='+parent.sounds+'&animations='+parent.animations);
+  localStorage.setItem('SETTINGS', '?music='+parent.music+'&sounds='+parent.sounds+'&animations='+parent.animations);
 
 }
 function scaleStuff () {

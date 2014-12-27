@@ -11,6 +11,8 @@
 <script type="text/javascript" src="js/cookies.js"></script>
 <script type="text/javascript">
 
+screen.orientation = "landscape-primary";
+
 var musicLoaded = false;
 var soundEnabled = true;
 var playing = false;
@@ -19,7 +21,7 @@ var sounds = 1;
 var animations = 1;
 
 // get cookie
-var cookie = getcookie('SETTINGS');
+var cookie = localStorage.getItem('SETTINGS');
 if (cookie != '') {
   //music = parseInt(getURLParameter(cookie, 'music'), 10);
   //sounds = parseInt(getURLParameter(cookie, 'sounds'), 10);

@@ -8,7 +8,7 @@ GNU Copyright (C) 2004 crisp - freesoftware@xs4all.nl
 
 // Get elements from string
 function getURLParameter(text, identifier) {
-
+ if (!text) return '';
   identifier += '=';
   var oleft = text.indexOf(identifier);
 
@@ -34,6 +34,7 @@ function getURLParameter(text, identifier) {
 
 // get contents of a cookie
 function getcookie(id) {
+alert ("deprecated");
 
   if (document.cookie) {
 
@@ -58,6 +59,7 @@ function getcookie(id) {
 // set a cookie
 function setcookie(id, cookievars) {
 
-  document.cookie = id+'='+cookievars+'; expires=Monday, 04-Apr-2010 05:00:00 GMT';
+alert ("DEPRETCARE");
+  document.cookie = id+'='+cookievars+'; expires=Monday, 04-Apr-2020 05:00:00 GMT';
 
 }
