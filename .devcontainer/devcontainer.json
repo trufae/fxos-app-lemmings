@@ -1,0 +1,7 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:debian-12",
+	"features": {},
+	"customizations": {},
+	"postAttachCommand": {}
+}
