@@ -1,0 +1,13 @@
+{
+	"name": "Debian",
+	"image": "mcr.microsoft.com/devcontainers/base:debian-12",
+	"features": {
+		"ghcr.io/devcontainers-contrib/features/apt-get-packages": {
+			"packages": "nginx"
+		}
+	},
+	"customizations": {},
+	"postAttachCommand": {
+		"retarget-nginx": "sudo sed -i 's/\\/var\\/www\\/html/\\/workspaces\\/fxos-app-lemmings/g' /etc/nginx/sites-enabled/default && sudo service nginx restart"
+	}
+}
