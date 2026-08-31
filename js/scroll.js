@@ -34,6 +34,7 @@ function init_scroll() {
 
   doscroll(scrollerleft);
   init_gestures();
+  init_hud_scroll();
 
   document.onmousemove = scrollen;
   document.onmouseup = stopscroll;
@@ -82,6 +83,22 @@ function init_scroll() {
   }
 
   document.getElementById('scroller').style.visibility = 'visible';
+
+}
+
+function init_hud_scroll() {
+
+  var controls = document.getElementById('controls');
+  var statusbar = document.getElementById('statusbar');
+
+  controls.addEventListener('scroll', function() {
+    var controlmax = controls.scrollWidth - controls.clientWidth;
+    var statusmax = statusbar.scrollWidth - statusbar.clientWidth;
+
+    statusbar.scrollLeft = controlmax > 0
+      ? controls.scrollLeft * statusmax / controlmax
+      : 0;
+  }, {passive:true});
 
 }
 

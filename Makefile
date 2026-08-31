@@ -2,7 +2,7 @@ all:
 	rm -f ../fxos-app-lemmings.zip
 	zip -r ../fxos-app-lemmings.zip *
 
-webxdc: lemmings.xdc
+xdc webxdc: lemmings.xdc
 
 lemmings.xdc:
 	rm -f $@
@@ -14,4 +14,4 @@ lemmings.xdc:
 clean:
 	rm -f lemmings.xdc icon.png ../fxos-app-lemmings.zip
 
-.PHONY: all webxdc clean
+.PHONY: all webxdc clean xdc

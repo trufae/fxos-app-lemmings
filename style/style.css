@@ -37,14 +37,31 @@ body.game #content {
 
 body.game #controls {
   box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
   flex: 0 0 78px;
   overflow-x: auto;
   overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
 }
 
 body.game #statusbar {
   box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
   flex: 0 0 25px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  touch-action: pan-x;
+  -webkit-overflow-scrolling: touch;
+}
+
+body.game #controls::-webkit-scrollbar,
+body.game #statusbar::-webkit-scrollbar {
+  display: none;
 }
 
 html,body, div, img {
@@ -268,6 +285,7 @@ div.center {
 
 div.control {
   float: left;
+  flex: 0 0 40px;
   height: 73px;
   width: 40px;
   margin: 2px 1px 0px 1px;
@@ -301,6 +319,7 @@ div.relative {
 
 div.status {
   float: left;
+  flex: 0 0 auto;
   padding: 2px;
   margin: 2px 1px 0px 1px;
   border-width: 1px;
@@ -402,12 +421,48 @@ text-align:left;
   background-color: #ff0000;
 }
 
+#game-select {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 80%;
+  margin: 0 auto;
+}
+
+#game-select #choice {
+  box-sizing: border-box;
+  width: 100%;
+}
+
+#code-form {
+  margin: 0;
+}
+
 #code {
-  width: 200px;
+  box-sizing: border-box;
+  width: 100%;
   border: 1px solid #ffffff;
   background-color: #000000;
   color: #ffffff;
   text-transform: uppercase;
+  text-align: center;
+}
+
+#game-actions {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+}
+
+.game-action {
+  display: block;
+  box-sizing: border-box;
+  padding: 5px;
+  font-size: clamp(24px, 8vw, 44px);
+  font-weight: bold;
+  line-height: 1.1;
+  text-align: center;
+  white-space: nowrap;
 }
 
 #scrollbg {

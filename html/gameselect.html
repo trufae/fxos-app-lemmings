@@ -93,7 +93,7 @@ document.addEventListener ('DOMContentLoaded', function (e) {
 </head>
 <body id="body" onload="init_music()">
 <div id="content"><h1>Choose Game - rating: <script type="text/javascript">document.write(rating);</script></h1>
-<center>
+<div id="game-select">
 <div id="choice">
 <script type="text/javascript">
 
@@ -131,20 +131,14 @@ for (i = 1; i < levels.length; i++) {
 
 </script>
 </div>
-<div class="center" style="margin-top: 10px">
-<center>
-<table>
-<tr><td>
-<h2><a href="menu.html" target="_self" onfocus="this.blur()">Menu</a></h2>
-</td><td>
-  <form style="display:inline" action="#" onsubmit="return play()"><input style="text-align:center" type="text" id="code" value="" /></form>
-</td><td>
-  <h2><a href="javascript://" target="_self" onclick="return play()" onfocus="this.blur()">Play!</a></h2>
-</td></tr>
-</table>
-</center>
+<form id="code-form" action="#" onsubmit="return play()">
+<input type="text" id="code" value="" aria-label="Level code" />
+</form>
+<div id="game-actions">
+<a class="game-action" href="menu.html" target="_self">Menu</a>
+<a class="game-action" href="#" onclick="return play()">Play!</a>
 </div>
-</center>
+</div>
 <img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />
 <img id="lemmingRight" src="../img/lemming_right.gif" alt="" />
 <!--
