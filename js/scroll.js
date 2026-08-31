@@ -183,8 +183,9 @@ function dobuttonscroll(num) {
 
   scrollerleft += num;
   doscroll(scrollerleft);
-  if (!scrolling) scrolling = setTimeout('dobuttonscroll('+num+')', 500);
-  else scrolling = setTimeout('dobuttonscroll('+num+')', 40);
+  scrolling = setTimeout(function () {
+    dobuttonscroll(num);
+  }, scrolling ? 40 : 500);
 
   return false;
 
@@ -235,7 +236,6 @@ function doclickscroll() {
   }
 
   doscroll(scrollerleft);
-  if (scrolling == null) scrolling = setTimeout('doclickscroll()', 500);
-  else scrolling = setTimeout('doclickscroll()', 40);
+  scrolling = setTimeout(doclickscroll, scrolling == null ? 500 : 40);
 
 }

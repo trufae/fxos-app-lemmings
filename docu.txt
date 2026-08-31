@@ -1,5 +1,5 @@
 ********************************************************************************
-                          DHTML Lemmings(tm) by crisp
+                               Lemmings(tm) by crisp
 
 
 ********************************************************************************
@@ -20,9 +20,8 @@ One is a hidden frame that loads playmusic.html; this file checks for sound-
 support and plays the background music. Because it is a frame, the music will
 continue playing even if you navigate through the other pages.
 
-The second frame will first load preload.html that preloads all images used
-in the general pages, and the images that are always used in each level of the
-game. This makes for faster loading of the other pages and the game itself.
+The second frame loads the menu. Level-specific images are preloaded silently
+when a game starts.
 
 The menu has 4 pictures for each game difficulty, and some general options that
 can be set or unset. The options are stored in a cookie, and will be in effect

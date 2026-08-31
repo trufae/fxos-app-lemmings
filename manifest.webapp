@@ -1,7 +1,7 @@
 {
   "name": "lemmings",
   "launch_path": "/index.html",
-  "description": "A port of DHTML Lemmings for FxOS",
+  "description": "A port of Lemmings for FxOS",
   "default_locale": "en",
   "version": "0.3.0",
   "developer": {

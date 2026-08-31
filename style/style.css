@@ -114,15 +114,6 @@ h2 {
   -moz-user-select: none;
 }
 
-#loading {
-  margin-top: 140px;
-  font-size: 16px;
-  line-height: 18px;
-  font-weight: bold;
-  text-align: center;
-  -moz-user-select: none;
-}
-
 #copyright {
 text-align:right;
   position: absolute;
@@ -158,18 +149,6 @@ text-align:right;
   right: 10px;
   font-size: 10px;
   line-height: 12px;
-  -moz-user-select: none;
-}
-
-#progressbar {
-  position: absolute;
-  width: 0px;
-  height: 10px;
-  left: 40px;
-  top: 180px;
-  background-image: url(../img/progressbar.gif);
-  font-size: 0px;
-  line-height: 0px;
   -moz-user-select: none;
 }
 
@@ -465,4 +444,3 @@ text-align:left;
 #statusbar>#time {
   width: 124px;
 }
-

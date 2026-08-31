@@ -1,5 +1,5 @@
-DHTML Lemmings
-==============
+Lemmings
+========
 
 This game is licensed under GPL and written by crisp (freesoftware@xs4all.nl) in 2004
 

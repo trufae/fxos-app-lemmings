@@ -36,7 +36,9 @@ function lemming_animate(i) {
 
   }
 
-  setTimeout('lemming_animate('+i+')', ani_speed); 
+  setTimeout(function () {
+    lemming_animate(i);
+  }, ani_speed);
 
 }
 
@@ -679,8 +681,12 @@ function lemming_special_ani(l,row,col) {
           traps[i][6] = 1;
           l.remove();
           level_images[traps[i][2]]['img'].src = level_images[traps[i][2]]['traps'].src;
-          setTimeout('reset_trap('+i+')', traps[i][4]);
-          if (sounds != 0) setTimeout('playsound(\''+traps[i][3]+'\')', traps[i][5]);
+          setTimeout(function () {
+            reset_trap(i);
+          }, traps[i][4]);
+          if (sounds != 0) setTimeout(function () {
+            playsound(traps[i][3]);
+          }, traps[i][5]);
           return true;
         }
       }
@@ -723,7 +729,7 @@ function lemming_explode(l) {
   }
 
   // fallback for slow machines
-  if (lemmings_out == 0 && num_lemmings == 0) setTimeout('game_over()', 10000);
+  if (lemmings_out == 0 && num_lemmings == 0) setTimeout(game_over, 10000);
 
 }
 
@@ -770,7 +776,9 @@ function firework(y,x) {
 
   } while (--j)
 
-  setTimeout('firework_ani('+i+')',10);
+  setTimeout(function () {
+    firework_ani(i);
+  }, 10);
 
 }
 
@@ -809,7 +817,9 @@ function firework_ani(i) {
   }
 
   if (bla != 0 || paused != 0) {
-    setTimeout('firework_ani('+i+')', ani_speed);
+    setTimeout(function () {
+      firework_ani(i);
+    }, ani_speed);
   } else {
     delete fireworks[i];
     num_firework--;

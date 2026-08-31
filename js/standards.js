@@ -7,18 +7,11 @@ GNU Copyright (C) 2004 crisp - freesoftware@xs4all.nl
 */
 
 // Version information
-var app = 'DHTML Lemmings&trade;';   // application title
+var app = 'Lemmings&trade;';         // application title
 var ver = '1.28';                    // version
 var pch = 'e';                       // patch level
 var version = app+' v'+ver+pch;      // Full application title
 var rts = 1091360050;                // release timestamp
-
-// redirect when not in frames or in foreign frame
-try {
-  if (window.top == window.self || !(window.top.document.title = document.title)) top.location.replace('../index.html');
-} catch(e) {
-  top.location.replace('../index.html');
-}
 
 // assume not mainmenu
 var mainmenu = 0;
@@ -130,7 +123,7 @@ function init_music() {
 
   } else {
 
-    music_init = setTimeout('init_music()', 200);
+    music_init = setTimeout(init_music, 200);
 
   }
 

@@ -30,8 +30,6 @@ var target;
 var target_img = new Array();
 var grid_width;
 var target_direction = 'b';
-var windowwidth = 560;
-
 function scaleStuff () {
         function viewPort() {
                 var h = window.innerHeight
@@ -45,10 +43,7 @@ function scaleStuff () {
         }
 
         var size = viewPort();
-        var pb = document.getElementById("progressbar");
-        pb.style.width = size.width - 150;
-        windowwidth = size.width- (size.width/4);
-                var b = document.getElementById ("content");
+		var b = document.getElementById ("content");
 		b.style.width = "100%";
                 b.style.left = "0px";
                 b.style.right= "0px";
@@ -105,8 +100,6 @@ function init() {
   // set keyup handler for target
   document.onkeyup = function() { if (target_direction != 'b') target_direction = 'b'; target.src = target_img['b'].src; }
 
-  document.getElementById('loading').style.visibility = 'hidden';
-  document.getElementById('progressbar').style.visibility = 'hidden';
   document.getElementById('controls').style.visibility = 'visible';
   document.getElementById('statusbar').style.visibility = 'visible';
   document.getElementById('scrollbar').style.visibility = 'hidden'; // always hidden, coz in mobiles we can swipe
@@ -123,7 +116,7 @@ function init() {
     parent.frames['bgmusic'].playmusic();
   }
 
-  setTimeout('start_game()', 1000);
+  setTimeout(start_game, 1000);
 
 }
 
@@ -133,7 +126,7 @@ function start_game() {
     if (level_images[image][0] == 'doors') place_image(image);
   }
   if (sounds) playsound('letsgo');
-  setTimeout('timer()', 1000);
+  setTimeout(timer, 1000);
 
 }
 
@@ -235,7 +228,9 @@ function change_release(num) {
   release_speedup--;
   var release_timeout = release_speedup > 0? 200:40;
 
-  release = setTimeout('change_release('+num+')', release_timeout);
+  release = setTimeout(function () {
+    change_release(num);
+  }, release_timeout);
 
 }
 
@@ -264,7 +259,7 @@ function timer() {
   if (paused == 0) {
 
     if (lemmings_out == 0 && num_lemmings == 0 && num_firework == 0) {
-      setTimeout('game_over()', 500);
+      setTimeout(game_over, 500);
       return;
     }
 
@@ -325,7 +320,7 @@ function timer() {
     target.style.left = (lemmings[lemming_targetted].left)+'px';
   }
 
-  setTimeout('timer()', timer_speed);
+  setTimeout(timer, timer_speed);
 
 }
 
@@ -354,7 +349,9 @@ function do_countdown(i) {
       var l = lemmings[i];
       if (l.countdown == -1 && lem[l.ani]['nosel'] == 0) {
         l.startcountdown();
-        setTimeout('do_countdown('+i+')',ani_speed/2);
+        setTimeout(function () {
+          do_countdown(i);
+        }, ani_speed/2);
         break;
       }
 
@@ -387,7 +384,9 @@ function keyhandler(e) {
     if (nukekey == 2) {
       kill_em_all(document.getElementById('nuke'));
     } else {
-      setTimeout('nukekey=0', 500);
+      setTimeout(function () {
+        nukekey = 0;
+      }, 500);
     }
 
   } else {
@@ -684,7 +683,7 @@ function preload_images() {
 
   }
 
-  setTimeout('progress()', 100);
+  setTimeout(progress, 100);
 
 }
 
@@ -710,11 +709,8 @@ function progress() {
 
   }
 
-  var w = Math.round(curprogress * (windowwidth / numpics));
-  document.getElementById('progressbar').style.width = w+'px';
-
-  if (curprogress >= numpics) setTimeout('init_music()',2000);
-  else setTimeout('progress()', 100);
+  if (curprogress >= numpics) init_music();
+  else setTimeout(progress, 100);
 
 }
 

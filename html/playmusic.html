@@ -54,7 +54,9 @@ function checkReady() {
 		//if (typeof player.isSoundCardEnabled != 'undefined' && player.isSoundCardEnabled() == false) parent.soundEnabled = false;
 	}
 
-	setTimeout('parent.musicLoaded=true', 100);
+	setTimeout(function () {
+		parent.musicLoaded = true;
+	}, 100);
 }
 
 </script>
