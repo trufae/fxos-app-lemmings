@@ -27,30 +27,6 @@ var target;
 var target_img = new Array();
 var grid_width;
 var target_direction = 'b';
-function scaleStuff () {
-        function viewPort() {
-                var h = window.innerHeight
-                || document.documentElement.clientHeight
-                || document.getElementsByTagName('body')[0].clientHeight;
-                var w = window.innerWidth
-                || document.documentElement.clientWidth
-                || document.getElementsByTagName('body')[0].clientWidth;
-
-                return {width : w, height : h};
-        }
-
-        var size = viewPort();
-		var b = document.getElementById ("content");
-		b.style.width = "100%";
-                b.style.left = "0px";
-                b.style.right= "0px";
-                b.style.top = "0px";
-                b.style.height = ""+(size.height - 100) + "px";
-}
-window.onresize = scaleStuff;
-document.addEventListener ('DOMContentLoaded', function (e) {
-        scaleStuff ();
-});
 
 function init() {
 
