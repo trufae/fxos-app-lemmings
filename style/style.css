@@ -31,6 +31,8 @@ body.game #content {
   height: auto;
   border: 0;
   overflow: hidden;
+  overscroll-behavior: none;
+  touch-action: none;
 }
 
 body.game #controls {
