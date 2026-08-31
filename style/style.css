@@ -28,7 +28,9 @@ body.game #content {
   box-sizing: border-box;
   flex: 1 1 0;
   min-height: 0;
+  width: 100%;
   height: auto;
+  margin: 0;
   border: 0;
   overflow: hidden;
   overscroll-behavior: none;

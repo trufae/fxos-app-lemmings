@@ -258,8 +258,12 @@ function init_gestures() {
 
   game_left = parseFloat(playground.style.left) || 0;
   game_top = parseFloat(playground.style.top) || 0;
+  game_zoom = content.clientHeight / playground.offsetHeight;
+  game_left *= game_zoom;
+  game_top *= game_zoom;
   playground.style.webkitTransformOrigin = '0 0';
   playground.style.transformOrigin = '0 0';
+  draw_game_position();
 
   content.addEventListener('touchstart', gesture_touchstart, {passive:false});
   content.addEventListener('touchmove', gesture_touchmove, {passive:false});
