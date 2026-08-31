@@ -11,11 +11,15 @@
 function writeSound(file, type, id, loop) {
 	var mime = "audio/ogg";
 	console.log ("writeSound "+file,id);
-	loop = loop?"loop ":"";
+	var player = document.createElement('audio');
 
-	document.write('<audio id="'+id+'" type="'+
-		mime+'" src="../html/sound/'+file+'" '+
-		loop+' controls=false style="visibility:hidden"></audio>');
+	player.id = id;
+	player.type = mime;
+	player.src = '../html/sound/'+file;
+	player.loop = Boolean(loop);
+	player.preload = 'auto';
+	player.style.display = 'none';
+	document.body.appendChild(player);
 	return true;
 }
 
