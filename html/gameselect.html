@@ -13,7 +13,61 @@
 
 var rating = getURLParameter(window.location.search, 'rating');
 
-include('../levels/'+rating+'.js');
+var level_catalogs = {
+  fun: [
+    null,
+    ['Just dig!', 'BAJHLDHBCL', 0],
+    ['Only floaters can survive this', '', 0],
+    ['Tailor-made for blockers', '', 0],
+    ['Now use miners and climbers', '', 0],
+    ['You need bashers this time', '', 0],
+    ['A task for blockers and bombers', '', 0],
+    ['Builders will help you here', '', 0],
+    ['Not as complicated as it looks', '', 0],
+    ['As long as you try your best', '', 0],
+    ['Smile if you love lemmings', '', 0]
+  ],
+  tricky: [
+    null,
+    ['This should be a doddle!', 'HCENNONPDW', 0],
+    ['We all fall down', '', 0],
+    ['A ladder would be handy', '', 0],
+    ['Here\'s one I prepared earlier', '', 0],
+    ['Careless clicking costs lives', '', 0],
+    ['Lemmingology', '', 0],
+    ['Been there, seen it, done it', '', 0],
+    ['Lemming sanctuary in sight', '', 0],
+    ['They just keep on coming', '', 0],
+    ['There\'s a lot of them about', '', 0]
+  ],
+  taxing: [
+    null,
+    ['If at first you don\'t succeed..', 'ONICAJNNFP', 0],
+    ['Watch out, there\'s traps about', '', 0],
+    ['Heaven can wait (we hope!!!!)', '', 0],
+    ['Lend a helping hand....', '', 0],
+    ['The Prison!', '', 0],
+    ['Compression Method 1', '', 0],
+    ['Every Lemming for himself!!!', '', 0],
+    ['The Art Gallery', '', 0],
+    ['Perseverance', '', 0],
+    ['Izzie Wizzie lemmings get busy', '', 0]
+  ],
+  mayhem: [
+    null,
+    ['Steel Works', 'NJMFLGALHM', 0],
+    ['The Boiler Room', '', 0],
+    ['It\'s hero time!', '', 0],
+    ['The Crossroads', '', 0],
+    ['Down, along, up. In that order', '', 0],
+    ['One way or another', '', 0],
+    ['Poles Apart', '', 0],
+    ['Last one out is a rotten egg!', '', 0],
+    ['Curse of the Pharaohs', '', 0],
+    ['Pillars of Hercules', '', 0]
+  ]
+};
+var levels = level_catalogs[rating] || [];
 
 var selected_level = 0;
 
