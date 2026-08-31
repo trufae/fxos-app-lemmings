@@ -162,6 +162,29 @@ h2 {
   -moz-user-select: none;
 }
 
+#pause-overlay {
+  position: absolute;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  z-index: 100;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(96, 96, 96, 0.72);
+  color: #ffffff;
+  font-size: clamp(36px, 10vw, 96px);
+  font-weight: bold;
+  line-height: 1;
+  letter-spacing: 0.12em;
+  text-shadow: 0 3px 0 #333333;
+  pointer-events: none;
+  -moz-user-select: none;
+  -webkit-user-select: none;
+  user-select: none;
+}
+
 #copyright {
 text-align:right;
   position: absolute;

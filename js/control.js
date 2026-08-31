@@ -75,6 +75,7 @@ function init() {
   playground.style.visibility = 'visible';
 
   if (sound == false) sounds = 0;
+  if (music) playmusic(level_music, levelnum);
 
   setTimeout(start_game, 1000);
 
@@ -93,17 +94,25 @@ function start_game() {
 function toggle_pause(img) {
 
   paused = 1 - paused;
+  var pause_overlay = document.getElementById('pause-overlay');
 
   if (paused == 0) {
 
     img.src = '../img/control_pause.gif';
     if (animations != 0) start_animations();
+    if (pause_overlay) pause_overlay.style.display = 'none';
+    if (music) {
+      if (music_player) resumeMusic();
+      else playmusic(level_music, levelnum);
+    }
     statusmsg = levelmsg;
 
   } else {
 
     img.src = '../img/control_pause_sel.gif';
     if (animations != 0) stop_animations();
+    pausemusic();
+    if (pause_overlay) pause_overlay.style.display = 'flex';
     statusmsg = 'Game paused';
 
   }
@@ -402,11 +411,13 @@ function keyhandler(e) {
         // stop sound (1)
         music = 0;
         sounds = 0;
+        stopmusic();
         break;
       case 50:
         // start sound (2)
         load_settings();
         if (sound == false) sounds = 0;
+        if (music && !paused) playmusic(level_music, levelnum);
         break;
       case 51:
         // stop animations (3)
