@@ -15,16 +15,11 @@ I'll explain a little here about how the game works.
 Before the game starts
 ----------------------
 
-As you open the index.html in your browser a frameset with 2 frames is loaded.
-One is a hidden frame that loads playmusic.html; this file checks for sound-
-support and plays the background music. Because it is a frame, the music will
-continue playing even if you navigate through the other pages.
-
-The second frame loads the menu. Level-specific images are preloaded silently
-when a game starts.
+Opening index.html redirects to the menu. Each page loads in the same window,
+and level-specific images are preloaded silently when a game starts.
 
 The menu has 4 pictures for each game difficulty, and some general options that
-can be set or unset. The options are stored in a cookie, and will be in effect
+can be set or unset. The options are stored locally, and will be in effect
 for each level you play. The pictures link to gameselect.html that dynamically
 creates an optionlist for each available level of that difficulty (at the moment
 10 levels per difficulty are available.
@@ -50,9 +45,8 @@ levelfiles because some playfields are used for more than 1 level.
 Besides the leveldescription, the codebase also contains an array with
 additional graphics to be loaded; these graphics are preloaded first from the
 preload function in control.js. When the graphics have been loaded the game
-initializes. First the music is started from routine init_music, that reloads
-the playmusic frame with the name of the music file to be played. After that the
-general init() routine is called. This init() routine performs the following:
+initializes. The general init() routine is then called and performs the
+following:
 
 -decompresses the compressed leveldescription into a 2-dimensional array. For
 each pixel in this array the level is described by the following numbers:
@@ -78,7 +72,6 @@ each pixel in this array the level is described by the following numbers:
 -sets general options
 -initializes the scrollbar
 -places the images
--starts the music
 -calls start_game with a small delay
 
 

@@ -13,6 +13,36 @@ var pch = 'e';                       // patch level
 var version = app+' v'+ver+pch;      // Full application title
 var rts = 1091360050;                // release timestamp
 
+var music = 1;
+var sounds = 1;
+var animations = 1;
+
+function load_settings() {
+
+  var settings = '';
+  var names = ['music', 'sounds', 'animations'];
+
+  try {
+    settings = localStorage.getItem('SETTINGS') || '';
+  } catch (e) { }
+
+  for (var i = 0; i < names.length; i++) {
+    var match = settings.match(new RegExp('[?&]'+names[i]+'=([01])'));
+    if (match) window[names[i]] = parseInt(match[1], 10);
+  }
+
+}
+
+function save_settings() {
+
+  try {
+    localStorage.setItem('SETTINGS', '?music='+music+'&sounds='+sounds+'&animations='+animations);
+  } catch (e) { }
+
+}
+
+load_settings();
+
 // assume not mainmenu
 var mainmenu = 0;
 
@@ -81,51 +111,27 @@ function validate(c) {
 
 }
 
-var music_init = null;
 function init_music() {
 
-  // first time
-
-  if (music_init == null) {
-
-    // no contextmenu, dragging or selecting
-    if (typeof document.oncontextmenu != 'undefined') {
-      document.oncontextmenu = cancelEvent;
-    } else {
-      document.onclick = noRightClick;
-    }
-    if (typeof document.onselectstart != 'undefined') document.onselectstart = cancelEvent;
-    if (typeof document.ondragstart != 'undefined') document.ondragstart = cancelEvent;
-
-    // general keyhandler
-    if (typeof document.onhelp != 'undefined') {
-      document.onkeydown = keyhandler;
-      document.onhelp = cancelEvent;
-    } else {
-      document.onkeypress = keyhandler;
-    }
-
-    // set focus
-    window.focus();
-
-  }
-
-  if (parent.playing == true) {
-
-    music_init = null;
-    init();
-
-  } else if (parent.musicLoaded == true) {
-
-    if (parent.soundEnabled && parent.music && parent.frames['bgmusic'].playmusic() == false) parent.soundEnabled = false;
-    music_init = null;
-    init();
-
+  // no contextmenu, dragging or selecting
+  if (typeof document.oncontextmenu != 'undefined') {
+    document.oncontextmenu = cancelEvent;
   } else {
-
-    music_init = setTimeout(init_music, 200);
-
+    document.onclick = noRightClick;
   }
+  if (typeof document.onselectstart != 'undefined') document.onselectstart = cancelEvent;
+  if (typeof document.ondragstart != 'undefined') document.ondragstart = cancelEvent;
+
+  // general keyhandler
+  if (typeof document.onhelp != 'undefined') {
+    document.onkeydown = keyhandler;
+    document.onhelp = cancelEvent;
+  } else {
+    document.onkeypress = keyhandler;
+  }
+
+  window.focus();
+  init();
 
 }
 
@@ -171,14 +177,6 @@ function cancelEvent(e) {
 }
 
 function redirect(url) {
-
-  if (typeof in_game !== 'undefined') {
-
-    if (parent.playing == true) parent.frames['bgmusic'].stopmusic();
-    parent.musicLoaded = false;
-    parent.frames['bgmusic'].location.replace('../html/playmusic.html?file=lemmings.mid');
-
-  }
 
   window.location.replace(url);
 

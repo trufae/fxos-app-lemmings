@@ -16,27 +16,15 @@ mainmenu = 1;
 function init() {
 
   // set options
-  if (parent.music) document.getElementById('music').checked = true;
-  if (parent.sounds) document.getElementById('sounds').checked = true;
-  if (parent.animations) document.getElementById('animations').checked = true;
-
-  // snif sound support
-  if (parent.soundEnabled == false) {
-    document.getElementById('music').disabled = true;
-    document.getElementById('sounds').disabled = true;
-  }
+  if (music) document.getElementById('music').checked = true;
+  if (sounds) document.getElementById('sounds').checked = true;
+  if (animations) document.getElementById('animations').checked = true;
 }
 
 function toggle(what, onoff) {
 
-  parent[what] = onoff.checked? 1:0;
-
-  if (what == 'music') {
-    if (onoff.checked) parent.frames['bgmusic'].playmusic();
-    else parent.frames['bgmusic'].stopmusic();
-  }
-
-  localStorage.setItem('SETTINGS', '?music='+parent.music+'&sounds='+parent.sounds+'&animations='+parent.animations);
+  window[what] = onoff.checked? 1:0;
+  save_settings();
 
 }
 function scaleStuff () {

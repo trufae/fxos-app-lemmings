@@ -6,9 +6,6 @@ GNU Copyright (C) 2004 crisp - freesoftware@xs4all.nl
 
 */
 
-var music = 1;
-var sounds = 1;
-var animations = 1;
 var cheatmode = 0;
 var speed = 1;
 var ani_speed = 80;
@@ -64,7 +61,7 @@ function init() {
     return;
   }
 
-  parent.document.title = 'Lemmings! - level '+levelnum+' '+rating+' - '+level_title;
+  document.title = 'Lemmings! - level '+levelnum+' '+rating+' - '+level_title;
   release_rate = min_release_rate;
   num_lemmings = init_lemmings;
   document.getElementById('num_more').firstChild.nodeValue = release_rate;
@@ -80,11 +77,6 @@ function init() {
 
   playground.style.width = level_images['field'][3]+'px';
   init_scroll();
-
-  // get settings
-  music = parent.music;
-  sounds = parent.sounds;
-  animations = parent.animations;
 
   // place images
   for (var image in level_images) {
@@ -106,15 +98,7 @@ function init() {
   document.getElementById('scroller').style.visibility = 'hidden'; // always hidden, coz in mobiles we can swipe
   playground.style.visibility = 'visible';
 
-  // start music
-  if (parent.soundEnabled == false) {
-    music = 0;
-    //sounds = 0;
-// always play everything
-  } else if (sound == false) sounds = 0;
-  if (music != 0) {
-    parent.frames['bgmusic'].playmusic();
-  }
+  if (sound == false) sounds = 0;
 
   setTimeout(start_game, 1000);
 
@@ -440,19 +424,13 @@ function keyhandler(e) {
         break;
       case 49:
         // stop sound (1)
-        if (parent.soundEnabled == true) {
-          parent.frames['bgmusic'].stopmusic();
-          music = 0;
-          sounds = 0;
-        }
+        music = 0;
+        sounds = 0;
         break;
       case 50:
         // start sound (2)
-        if (parent.soundEnabled == true) {
-          music = parent.music;
-          if (sound) sounds = parent.sounds;
-          if (music) parent.frames['bgmusic'].playmusic();
-        }
+        load_settings();
+        if (sound == false) sounds = 0;
         break;
       case 51:
         // stop animations (3)

@@ -1,57 +1,14 @@
-<!-- DHTML Lemmings(TM) - GNU Copyright (c) 2004 by crisp / freesoftware[at]xs4all.nl -->
-<!DOCTYPE HTML PUBLIC "-//W3C//DTD XHTML 1.0 Frameset//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-frameset.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml">
+<!doctype html>
+<html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="UTF-8">
 <meta name="description" content="Lemmings by crisp">
-<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=false" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no">
 <meta name="keywords" content="lemmings javascript crisp">
-<meta name="viewport" content="width=device-width">
 <title>Lemmings! - by crisp</title>
-<script type="text/javascript" src="js/cookies.js"></script>
-<script type="text/javascript">
-
-screen.orientation = "landscape-primary";
-
-var musicLoaded = false;
-var soundEnabled = true;
-var playing = false;
-var music = 1;
-var sounds = 1;
-var animations = 1;
-
-// get cookie
-var cookie = localStorage.getItem('SETTINGS');
-if (cookie != '') {
-  //music = parseInt(getURLParameter(cookie, 'music'), 10);
-  //sounds = parseInt(getURLParameter(cookie, 'sounds'), 10);
-  animations = parseInt(getURLParameter(cookie, 'animations'), 10);
-}
-
-function launchIntoFullscreen(element) {
-  if (!element)
-    return;
-  if(element.requestFullscreen) {
-    element.requestFullscreen();
-  } else if(element.mozRequestFullScreen) {
-    element.mozRequestFullScreen();
-  } else if(element.webkitRequestFullscreen) {
-    element.webkitRequestFullscreen();
-  } else if(element.msRequestFullscreen) {
-    element.msRequestFullscreen();
-  }
-}
-launchIntoFullscreen(document.body);
-
+<script>
+window.location.replace('html/menu.html');
 </script>
 </head>
-<frameset rows="1,*" border="0" framespacing="0">
-  <frame id="bgmusic" name="bgmusic" src="html/playmusic.html?file=../../levels/music/level-01.ogg&now=true" frameborder="0" scrolling="no" noresize="noresize" marginwidth="0" marginheight="0" />
-  <frame name="main" src="html/menu.html" frameborder="0" scrolling="no" noresize="noresize" marginwidth="0" marginheight="0" />
-  <noframes>
-    <body>
-      <p>Your browser doesn't support frames; please upgrade your browser software.</p>
-    </body>
-  </noframes>
-</frameset>
+<body></body>
 </html>

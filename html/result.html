@@ -112,26 +112,14 @@ if (nextlevel >= levels.length && r >= n) {
   document.write('<h2>Mayhem!</h2>A little more practice on this level is definitely recommended.');
 }
 
-function gotoMenu () {
-// workaround to make music play again
-	window.top.location.replace('../index.html');
-}
-
-function doNext() {
-	localStorage ("", nextlevelcode);
-	return true;
-}
-
 </script>
 </div>
 <h2 style="margin-top: 40px">
 
-<!--
 <a href="menu.html" target="_self" onfocus="this.blur()">Menu</a>
--->
-<a onclick="javascript:gotoMenu()" href="#" target="_self" onfocus="this.blur()">Menu</a>&nbsp;&nbsp;
-<script type="text/javascript">document.write('<a onclick="javascript:doNext()" href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Again<\/a>&nbsp;&nbsp;&nbsp;');
-if (nextlevel < levels.length && r >= n) document.write('<a onclick="javascript:doNext()" href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next<\/a>');</script>
+&nbsp;&nbsp;
+<script type="text/javascript">document.write('<a href="lemmings.html?level='+levelnum+'&rating='+rating+'&code='+code+'" target="_self" onfocus="this.blur()">Again<\/a>&nbsp;&nbsp;&nbsp;');
+if (nextlevel < levels.length && r >= n) document.write('<a href="lemmings.html?level='+nextlevel+'&rating='+rating+'&code='+nextlevelcode+'" target="_self" onfocus="this.blur()">Next<\/a>');</script>
 </h2>
 
 <img id="lemmingLeft" src="../img/lemming_left.gif" alt="" />

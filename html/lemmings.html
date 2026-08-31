@@ -123,22 +123,6 @@ if (isNaN(levelnum) || code == '') {
   <div class="status" id="time">&nbsp;</div>
 </div>
 <script type="text/javascript">
-//if (parent.soundEnabled == true) {
-if (true) {
-
-  if (typeof level_music != 'undefined') {
-    parent.musicLoaded = false;
-level_music = level_music.replace (/tim/, "");
-level_music = level_music.replace (/lemmin/, "");
-level_music = "level-0"+ level_music[0] + ".ogg";
-level_music = "../../levels/music/"+ level_music;
-
-// mute
- //   parent.frames['bgmusic'].location.replace('playmusic.html?file=');
-/* start playing music after some delay  */
-    parent.frames['bgmusic'].location.replace('playmusic.html?file='+level_music);
-  }
-
   sound = writeSound('letsgo.ogg', 'ogg', 'letsgo', false);
   if (sound == true) {
     writeSound('bang.ogg', 'ogg', 'bang', false);
@@ -165,7 +149,6 @@ level_music = "../../levels/music/"+ level_music;
     writeSound('ting.ogg', 'ogg', 'ting', false);
     writeSound('yippee.ogg', 'ogg', 'yippee', false);
   }
-}
 </script>
 </body>
 </html>
