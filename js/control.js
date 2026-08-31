@@ -99,7 +99,6 @@ function toggle_pause(img) {
   if (paused == 0) {
 
     img.src = '../img/control_pause.gif';
-    if (animations != 0) start_animations();
     if (pause_overlay) pause_overlay.style.display = 'none';
     if (music) {
       if (music_player) resumeMusic();
@@ -110,7 +109,6 @@ function toggle_pause(img) {
   } else {
 
     img.src = '../img/control_pause_sel.gif';
-    if (animations != 0) stop_animations();
     pausemusic();
     if (pause_overlay) pause_overlay.style.display = 'flex';
     statusmsg = 'Game paused';
